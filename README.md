@@ -4,7 +4,16 @@
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg) ![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg) ![.NET](https://img.shields.io/badge/.NET-8.0-purple.svg)
 
-## 📖 Introduction
+## �️ Live Preview (Command Center)
+
+![Dashboard Overview](screenshots/dashboard_overview.png)
+
+### [👉 View Live Demo Dashboard](https://raphasha27.github.io/flowsentinel/src/FlowSentinel.Dashboard/index.html)
+*(Note: Requires GitHub Pages to be enabled on the repository)*
+
+---
+
+## �📖 Introduction
 
 **FlowSentinel** is a centralized traffic-control system for APIs and microservices. It is designed to act as a high-performance control plane that enforces rate limits, detects abuse patterns, and acts as a dynamic policy engine for distributed systems.
 
