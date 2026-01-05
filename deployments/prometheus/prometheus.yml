@@ -1,0 +1,11 @@
+global:
+  scrape_interval: 15s
+
+scrape_configs:
+  - job_name: 'flowsentinel-gateway'
+    static_configs:
+      - targets: ['flowsentinel-gateway:80']
+
+  - job_name: 'flowsentinel-worker'
+    static_configs:
+      - targets: ['flowsentinel-worker:80']

@@ -1,0 +1,56 @@
+version: '3.8'
+
+services:
+  flowsentinel-gateway:
+    image: flowsentinel-gateway
+    build:
+      context: .
+      dockerfile: src/FlowSentinel.Gateway/Dockerfile
+    ports:
+      - "5000:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__Redis=redis:6379
+    depends_on:
+      - redis
+
+  flowsentinel-worker:
+    image: flowsentinel-worker
+    build:
+      context: .
+      dockerfile: src/FlowSentinel.Worker/Dockerfile
+    environment:
+      - ConnectionStrings__Redis=redis:6379
+    depends_on:
+      - redis
+
+  sample-api:
+    image: sample-api
+    build:
+      context: .
+      dockerfile: src/FlowSentinel.SampleApi/Dockerfile
+    ports:
+      - "5001:80"
+    environment:
+      - ConnectionStrings__Redis=redis:6379
+    depends_on:
+      - redis
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+
+  prometheus:
+    image: prom/prometheus
+    volumes:
+      - ./deployments/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+
+  grafana:
+    image: grafana/grafana
+    ports:
+      - "3000:3000"
+    depends_on:
+      - prometheus

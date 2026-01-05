@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlowSentinel | Traffic Governance Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/lucide@0.306.0/dist/umd/lucide.min.js"></script>
+</head>
+<body class="dark-theme">
+    <div class="background-glow"></div>
+    
+    <nav class="sidebar">
+        <div class="logo">
+            <div class="logo-icon">🚦</div>
+            <span class="logo-text">Flow<span>Sentinel</span></span>
+        </div>
+        <ul class="nav-links">
+            <li class="active" data-tab="overview"><i data-lucide="layout-dashboard"></i> Overview</li>
+            <li data-tab="policies"><i data-lucide="shield"></i> Policies</li>
+            <li data-tab="analytics"><i data-lucide="bar-chart-3"></i> Analytics</li>
+            <li data-tab="abuse"><i data-lucide="zap"></i> Abuse Detection</li>
+            <li data-tab="settings"><i data-lucide="settings"></i> System Settings</li>
+        </ul>
+        <div class="sidebar-footer">
+            <div class="status-indicator">
+                <span class="pulse"></span>
+                System Online
+            </div>
+        </div>
+    </nav>
+
+    <main class="content">
+        <header>
+            <div class="header-left">
+                <h1 id="page-title">Command Center</h1>
+                <p id="page-subtitle">Real-time traffic governance and policy enforcement.</p>
+            </div>
+            <div class="header-right">
+                <div class="search-bar">
+                    <i data-lucide="search"></i>
+                    <input type="text" placeholder="Search services...">
+                </div>
+                <div class="user-profile">
+                    <div class="avatar">AD</div>
+                </div>
+            </div>
+        </header>
+
+        <section id="overview" class="tab-content active">
+            <div class="stats-grid">
+                <div class="stat-card glass shadow-pulse">
+                    <div class="stat-header">
+                        <i data-lucide="activity" class="blue"></i>
+                        <span>Total Requests</span>
+                    </div>
+                    <div class="stat-value" id="total-req">1.2M</div>
+                    <div class="stat-footer">
+                        <span class="trend up"><i data-lucide="trending-up"></i> 12.5%</span>
+                        vs last 24h
+                    </div>
+                </div>
+                <div class="stat-card glass">
+                    <div class="stat-header">
+                        <i data-lucide="shield-alert" class="red"></i>
+                        <span>Blocked (429)</span>
+                    </div>
+                    <div class="stat-value" id="blocked-req">4.2k</div>
+                    <div class="stat-footer">
+                        <span class="trend down"><i data-lucide="trending-down"></i> 3.1%</span>
+                        of total traffic
+                    </div>
+                </div>
+                <div class="stat-card glass">
+                    <div class="stat-header">
+                        <i data-lucide="clock" class="purple"></i>
+                        <span>Avg Latency</span>
+                    </div>
+                    <div class="stat-value" id="avg-latency">24ms</div>
+                    <div class="stat-footer">
+                        <span class="trend neutral">99.9th percentile</span>
+                    </div>
+                </div>
+                <div class="stat-card glass">
+                    <div class="stat-header">
+                        <i data-lucide="cpu" class="green"></i>
+                        <span>Core Health</span>
+                    </div>
+                    <div class="stat-value">99.98%</div>
+                    <div class="stat-footer">
+                        Cluster: <span class="badge">Europe-West1</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="main-grid">
+                <div class="chart-container glass">
+                    <h3>Traffic Distribution</h3>
+                    <div class="chart-box">
+                        <!-- Canvas for chart -->
+                        <div class="mock-chart">
+                            <div class="bar" style="height: 60%"></div>
+                            <div class="bar" style="height: 80%"></div>
+                            <div class="bar" style="height: 40%"></div>
+                            <div class="bar" style="height: 90%"></div>
+                            <div class="bar" style="height: 70%"></div>
+                            <div class="bar" style="height: 50%"></div>
+                            <div class="bar" style="height: 85%"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="service-list glass">
+                    <h3>Hot Services</h3>
+                    <div class="service-item">
+                        <span class="service-name">auth-service</span>
+                        <div class="progress-bar"><div class="fill" style="width: 85%"></div></div>
+                        <span class="service-val">85%</span>
+                    </div>
+                    <div class="service-item">
+                        <span class="service-name">orders-api</span>
+                        <div class="progress-bar"><div class="fill blue" style="width: 62%"></div></div>
+                        <span class="service-val">62%</span>
+                    </div>
+                    <div class="service-item">
+                        <span class="service-name">inventory-service</span>
+                        <div class="progress-bar"><div class="fill purple" style="width: 45%"></div></div>
+                        <span class="service-val">45%</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="policies" class="tab-content">
+            <div class="toolbar">
+                <button class="btn btn-primary"><i data-lucide="plus"></i> New Policy</button>
+            </div>
+            <div class="policy-table-container glass">
+                <table class="policy-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Scope</th>
+                            <th>Limit</th>
+                            <th>Window</th>
+                            <th>Action</th>
+                            <th>Status</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Global Safety Net</td>
+                            <td><span class="badge blue">Global</span></td>
+                            <td>10,000 req</td>
+                            <td>1 min</td>
+                            <td><span class="badge purple">Throttle</span></td>
+                            <td><span class="status-on">Active</span></td>
+                            <td><i data-lucide="more-vertical"></i></td>
+                        </tr>
+                        <tr>
+                            <td>Premium User Boost</td>
+                            <td><span class="badge green">UserTier</span></td>
+                            <td>50,000 req</td>
+                            <td>1 min</td>
+                            <td><span class="badge blue">Allow</span></td>
+                            <td><span class="status-on">Active</span></td>
+                            <td><i data-lucide="more-vertical"></i></td>
+                        </tr>
+                        <tr>
+                            <td>Suspicious IP Block</td>
+                            <td><span class="badge red">Abuse</span></td>
+                            <td>0 req</td>
+                            <td>∞</td>
+                            <td><span class="badge red">Block</span></td>
+                            <td><span class="status-on">Active</span></td>
+                            <td><i data-lucide="more-vertical"></i></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/dashboard.js"></script>
+</body>
+</html>
