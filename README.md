@@ -83,9 +83,10 @@ graph TD
 
 FlowSentinel implements standard and advanced rate-limiting algorithms:
 
-*   **Token Bucket**: Classic burst-capable limiting.
+*   **Token Bucket (Redis)**: Atomic Lua-based distributed limiting for high-scale microservices.
+*   **Token Bucket (Local)**: High-performance `ConcurrentDictionary` implementation for localized edge compute.
 *   **Sliding Window Log**: Precise rolling window limiting.
-*   **Adaptive Throttling**: Reduces limits dynamically based on service latency signals.
+*   **CI/CD**: Fully automated testing pipeline via GitHub Actions.
 
 For deep dive, see [Rate Limiting Design](docs/rate-limiting.md).
 
