@@ -2,41 +2,29 @@ name: Continuous Integration
 
 on:
   workflow_dispatch:
-
   push:
     branches: [ master ]
   pull_request:
     branches: [ master ]
 
 jobs:
-  dotnet:
+  dotnet: 
     name: .NET (Build & Test)
-    runs-on:
-  workflow_dispatch:
- ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+    runs-on: - uses: actions/checkout@v4
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version:
-  workflow_dispatch:
- '8.0.x'
-      - name: Restore dependencies
-        run: dotnet restore
+   run: dotnet restore
       - name: Build
         run: dotnet build --no-restore --configuration Release
       - name: Test
         run: dotnet test --no-build --configuration Release
 
-  security_scan:
+  security_scan: 
     name: Security Scan (Trivy)
     needs: dotnet
-    runs-on:
-  workflow_dispatch:
- ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+    runs-on: - uses: actions/checkout@v4
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
         with:
@@ -45,4 +33,3 @@ jobs:
           format: 'table'
           exit-code: '0'
           severity: 'CRITICAL,HIGH'
-
