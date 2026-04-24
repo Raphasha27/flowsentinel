@@ -10,7 +10,8 @@ on:
 jobs:
   dotnet: 
     name: .NET (Build & Test)
-    runs-on: - uses: actions/checkout@v4
+    runs-on: -
+    uses: actions/checkout@v4
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
@@ -24,7 +25,8 @@ jobs:
   security_scan: 
     name: Security Scan (Trivy)
     needs: dotnet
-    runs-on: - uses: actions/checkout@v4
+    runs-on: -
+    uses: actions/checkout@v4
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
         with:
