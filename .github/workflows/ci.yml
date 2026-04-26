@@ -1,23 +1,36 @@
-﻿name: CI
+name: Node.js CI (Kirov Dynamics)
 
 on:
-  push:
-    branches: ["main", "master"]
-  pull_request:
-    branches: ["main", "master"]
   workflow_dispatch:
-
-permissions:
-  contents: read
+  push:
+    branches: [ master, main ]
+  pull_request:
+    branches: [ master, main ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-dotnet@v4
+      - name: Use Node.js
+        uses: actions/setup-node@v4
         with:
-          dotnet-version: "8.0.x"
-      - run: dotnet restore
-      - run: dotnet build --no-restore --configuration Release
-      - run: dotnet test --no-build --configuration Release 2>/dev/null || echo "No tests"
+          node-version: 20
+          cache: 'npm'
+      - run: npm install --legacy-peer-deps
+      - run: npm run build --if-present
+      - run: npm test --if-present
+
+  security_scan:
+    name: Security Scan (Trivy)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: 'fs'
+          ignore-unfixed: true
+          format: 'table'
+          exit-code: '0'
+          severity: 'CRITICAL,HIGH'
