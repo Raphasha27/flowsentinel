@@ -1,0 +1,21 @@
+# .NET Ignore
+[Bb]in/
+[Oo]bj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# IDEs
+.vscode/
+.idea/
+
+# Secret Protection
+.env
+*.pem
+*.key
+secrets.json
+appsettings.Development.json
+
+# Docker
+.dockerignore

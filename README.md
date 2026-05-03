@@ -11,10 +11,8 @@
 
 ## �️ Live Preview (Command Center)
 
-![Dashboard Overview](screenshots/dashboard_overview.png)
-
-### [👉 View Live Demo Dashboard](https://raphasha27.github.io/flowsentinel/src/FlowSentinel.Dashboard/index.html)
-*(Note: Requires GitHub Pages to be enabled on the repository)*
+### [👉 Enter FlowSentinel Command Center (Live)](https://raphasha27.github.io/flowsentinel/src/FlowSentinel.Dashboard/index.html)
+*(Experience the elite glassmorphic interface and real-time traffic visualization)*
 
 ---
 
@@ -88,9 +86,10 @@ graph TD
 
 FlowSentinel implements standard and advanced rate-limiting algorithms:
 
-*   **Token Bucket**: Classic burst-capable limiting.
+*   **Token Bucket (Redis)**: Atomic Lua-based distributed limiting for high-scale microservices.
+*   **Token Bucket (Local)**: High-performance `ConcurrentDictionary` implementation for localized edge compute.
 *   **Sliding Window Log**: Precise rolling window limiting.
-*   **Adaptive Throttling**: Reduces limits dynamically based on service latency signals.
+*   **CI/CD**: Fully automated testing pipeline via GitHub Actions.
 
 For deep dive, see [Rate Limiting Design](docs/rate-limiting.md).
 
@@ -133,9 +132,9 @@ The system includes built-in OTel instrumentation:
 
 Beyond simple rate limiting, FlowSentinel employs intelligence:
 
-1.  **Density Analysis (`RollingWindowAbuseDetector`)**: Uses Redis Sorted Sets to track sub-second request density. Detects low-and-slow attacks that bypass traditional buckets.
-2.  **Pattern Recognition**: Detects rapid sequences of requests to sensitive endpoints (e.g., credential stuffing).
-3.  **Adaptive Penalties**: Automatically increases the "cost" of tokens for clients flagged by the abuse---
+2.  **Trajectory Analysis (Elite AI Engine)**: Uses **A* Pathfinding** to calculate the logical navigation distance between endpoints. Flags clients that "teleport" between isolated nodes (e.g., from `/public/search` to `/admin/config` in 1ms).
+3.  **Density Analysis (`RollingWindowAbuseDetector`)**: Uses Redis Sorted Sets to track sub-second request density. Detects low-and-slow attacks that bypass traditional buckets.
+4.  **Adaptive Penalties**: Automatically increases the "cost" of tokens for clients flagged by the abuse---
 
 ## 🧪 Chaos Testing & Resiliency
 
