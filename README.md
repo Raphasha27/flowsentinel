@@ -2,7 +2,12 @@
 
 **Enterprise Rate-Limiting & Traffic Governance Platform**
 
-![License](https://img.shields.io/badge/license-MIT-blue.svg) ![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg) ![.NET](https://img.shields.io/badge/.NET-8.0-purple.svg)
+<p align="left">
+  <img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License">
+  <img src="https://img.shields.io/badge/Status-Autonomous-success?style=for-the-badge&logo=github-actions&logoColor=white&color=2ea44f" alt="Status">
+  <img src="https://img.shields.io/badge/.NET-8.0-purple.svg" alt=".NET">
+  <img src="https://img.shields.io/badge/Security-Health_Hub_Hardened-blue" alt="Health Hub">
+</p>
 
 ## �️ Live Preview (Command Center)
 
