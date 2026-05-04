@@ -1,21 +1,43 @@
-## 🏁 Project Milestone: [Title]
+## Summary
+> Briefly describe what this PR does and why.
 
-### 📝 Description
-- [ ] What is the goal of this change?
-- [ ] Which Issue does this resolve? (e.g., Fixes #1)
-
-### 🛠️ Technical Changes
-- [ ] [Change 1]
-- [ ] [Change 2]
-
-### 🧪 Quality Assurance (QA)
-- [ ] Unit Tests Passed?
-- [ ] Linting/Build Checks Passed? (CI)
-- [ ] Manual verification completed?
-
-### 🛡️ Security Check
-- [ ] No secrets hardcoded?
-- [ ] Dependencies audited?
+<!-- Example: feat(auth): adds JWT refresh token flow to resolve token expiry on long sessions -->
 
 ---
-*Generated via the Raphasha27 Elite Engineering Workflow*
+
+## Type of Change
+- [ ] `feat` — New feature
+- [ ] `fix` — Bug fix
+- [ ] `refactor` — Code restructure (no functional change)
+- [ ] `perf` — Performance improvement
+- [ ] `test` — Adding/updating tests
+- [ ] `docs` — Documentation only
+- [ ] `chore` — CI/CD, tooling, dependencies
+
+---
+
+## Related Issue
+Closes #<!-- issue number -->
+
+---
+
+## What Was Changed
+<!-- Bullet points of key changes made -->
+-
+-
+-
+
+---
+
+## Testing
+- [ ] Unit tests added / updated
+- [ ] Integration tests verified
+- [ ] Manually tested locally
+
+---
+
+## Checklist
+- [ ] Follows Conventional Commits format
+- [ ] No debug/temporary code left in
+- [ ] No new lint errors introduced
+- [ ] Documentation updated (if applicable)
