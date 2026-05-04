@@ -1,188 +1,70 @@
 # 🚦 FlowSentinel
 
-**Enterprise Rate-Limiting & Traffic Governance Platform**
+**Autonomous Threat Detection & Enterprise Traffic Governance**
+
+![Banner](https://github.com/Raphasha27/flowsentinel/blob/main/screenshots/dashboard_mockup.png?raw=true)
 
 <p align="left">
-  <img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License">
   <img src="https://img.shields.io/badge/Status-Autonomous-success?style=for-the-badge&logo=github-actions&logoColor=white&color=2ea44f" alt="Status">
   <img src="https://img.shields.io/badge/.NET-8.0-purple.svg" alt=".NET">
   <img src="https://img.shields.io/badge/Security-Health_Hub_Hardened-blue" alt="Health Hub">
 </p>
 
-## �️ Live Preview (Command Center)
+## 🎮 Command Center
 
 ### [👉 Enter FlowSentinel Command Center (Live)](https://raphasha27.github.io/flowsentinel/src/FlowSentinel.Dashboard/index.html)
 *(Experience the elite glassmorphic interface and real-time traffic visualization)*
 
 ---
 
-## �📖 Introduction
+## 🧠 Core Intelligence
 
-**FlowSentinel** is a centralized traffic-control system for APIs and microservices. It is designed to act as a high-performance control plane that enforces rate limits, detects abuse patterns, and acts as a dynamic policy engine for distributed systems.
+**FlowSentinel** is a high-performance traffic-control system designed to act as a sovereign control plane for distributed microservices. It combines atomic rate-limiting with advanced behavioral analytics to ensure zero-trust infrastructure integrity.
 
-Unlike typical business applications, FlowSentinel is **infrastructure software**. It fills the gap between basic API gateway throttling and complex localized circuit breakers.
+### 🚀 New AI Capabilities (v2.0)
 
-### 🧠 Why FlowSentinel?
-
-*   **Centralized Control Plane**: Manage traffic policies across all your services from one place.
-*   **Dynamic Intelligence**: Shift from static "100 req/min" rules to adaptive policies based on system health and anomaly detection.
-*   **High Performance**: Built on .NET 8 Minimal APIs and Redis for sub-millisecond overhead.
+1.  **Semantic Threat Analysis**: Beyond simple regex, FlowSentinel now analyzes the *intent* of request payloads using real-time vector embeddings, flagging sophisticated prompt injections and API abuse patterns before they reach the core.
+2.  **Agentic Trust Scoring**: Every client node is assigned a dynamic **Reliability Quotient (RQ)**. This score evolves based on interaction history, navigation velocity, and policy compliance, enabling autonomous "Soft Throttling" of suspicious actors.
+3.  **Trajectory Analysis**: Uses **A* Pathfinding** to calculate logical distance between service nodes, instantly blocking "impossible" navigation paths (e.g. searching to admin config in <1ms).
 
 ---
 
 ## 🏗️ Architecture
 
-FlowSentinel operates as a sidecar/middleware model with a centralized policy engine.
-
 ```mermaid
 graph TD
-    Client -->|Request| Agent[FlowSentinel Agent/Middleware]
-    Agent -->|Async Check| Core[FlowSentinel Core]
-    Core -->|Read| Redis[(Redis Counter Store)]
-    Core -->|Read| DB[(PostgreSQL Policy Store)]
-    Core -->|Publish| Bus{Message Bus}
+    Client((Distributed Client)) -->|Request| Agent[FlowSentinel Agent]
+    Agent -->|Policy Query| Core[FlowSentinel Core]
+    Core -->|Intelligent Check| AI[Semantic Analysis Engine]
+    AI -->|Trust Score| Scoring[Trust Registry]
+    Core -->|Atomic State| Redis[(Redis Cluster)]
+    Core -->|Analytics| Bus{Event Bus}
     Bus --> Worker[FlowSentinel Worker]
-    Worker -->|Analyze| Abuse[Abuse Detection]
+    Worker -->|Reporting| Dashboard[Glassmorphic Dashboard]
 ```
 
-### Core Components
+---
 
-1.  **FlowSentinel.Gateway**: The API entry point for control plane operations.
-2.  **FlowSentinel.Core**: The heart of the system containing the token bucket algorithms and policy evaluation logic.
-3.  **FlowSentinel.Policy**: A dedicated engine for defining and parsing complex traffic rules (scope, window, limits).
-4.  **FlowSentinel.Agent**: A lightweight SDK/Middleware for .NET services to hook into FlowSentinel.
-5.  **FlowSentinel.Worker**: Background service for processing metrics, detecting anomalies, and crunching usage logs.
+## 🛠️ Tech Stack
+
+- **Engine**: .NET 8 High-Performance Minimal APIs.
+- **State**: Distributed Redis with atomic Lua scripting.
+- **Analytics**: Scikit-learn (Python) integration for trajectory modeling.
+- **UI**: Glassmorphic Dashboard (React / Tailwind).
+- **Hardening**: Health Hub autonomous status injection.
 
 ---
 
-## 🚀 Getting Started
+## 🔬 Interview Talking Points (Staff Level)
 
-### Prerequisites
-
-*   **.NET 8 SDK**
-*   **Docker Desktop** (for Redis/PostgreSQL)
-
-### Installation
-
-1.  Clone the repository:
-    ```bash
-    git clone https://github.com/your-username/flowsentinel.git
-    cd flowsentinel
-    ```
-
-2.  Start Infrastructure (Redis & Postgres):
-    ```bash
-    docker-compose up -d
-    ```
-
-3.  Run the Solution:
-    ```bash
-    dotnet run --project src/FlowSentinel.Gateway
-    ```
-
----
-
-## 🧪 Core Algorithms
-
-FlowSentinel implements standard and advanced rate-limiting algorithms:
-
-*   **Token Bucket (Redis)**: Atomic Lua-based distributed limiting for high-scale microservices.
-*   **Token Bucket (Local)**: High-performance `ConcurrentDictionary` implementation for localized edge compute.
-*   **Sliding Window Log**: Precise rolling window limiting.
-*   **CI/CD**: Fully automated testing pipeline via GitHub Actions.
-
-For deep dive, see [Rate Limiting Design](docs/rate-limiting.md).
-
----
-
-## 🛠️ Domain Model
-
-### Policy
-Defines *who* can access *what* and *how much*.
-*   **Scopes**: Global, Service, Endpoint, User.
-*   **Actions**: Reject, Stall (Soft Throttle), Challenge.
-
-### TrafficEvent
-An immutable record of a traffic decision, used for audit and abuse detection.
-
----
-
-## � Containerization & Observability
-
-FlowSentinel is designed for cloud-native deployment.
-
-### Docker Stack
-Run the entire platform including observability infra:
-```bash
-docker-compose up -d
-```
-Includes:
-- **Redis 7**: Distributed state & counters.
-- **Prometheus**: Metrics collection.
-- **Grafana**: Visual dashboards (Port 3000).
-
-### OpenTelemetry
-The system includes built-in OTel instrumentation:
-- **Metrics**: Request rates, error counts, and throttle events exported to Prometheus.
-- **Tracing**: Distributed spans to track policy evaluation time.
-
----
-
-## 🔬 Advanced Abuse Detection
-
-Beyond simple rate limiting, FlowSentinel employs intelligence:
-
-2.  **Trajectory Analysis (Elite AI Engine)**: Uses **A* Pathfinding** to calculate the logical navigation distance between endpoints. Flags clients that "teleport" between isolated nodes (e.g., from `/public/search` to `/admin/config` in 1ms).
-3.  **Density Analysis (`RollingWindowAbuseDetector`)**: Uses Redis Sorted Sets to track sub-second request density. Detects low-and-slow attacks that bypass traditional buckets.
-4.  **Adaptive Penalties**: Automatically increases the "cost" of tokens for clients flagged by the abuse---
-
-## 🧪 Chaos Testing & Resiliency
-
-FlowSentinel is built to stay up when others fail. See our [Chaos Testing Doc](docs/chaos-testing.md) for details on:
-- **Fail-Open Strategy**: How we prioritize availability over strict enforcement.
-- **Latency Budgeting**: 50ms strict timeouts on Redis calls to protect the request pipeline.
-
----
-
-## 🎤 Interview Talking Points (Staff Level)
-
-- **Distributed Locking vs. Lua**: "I avoided distributed locks (Redlock) in favor of **atomic Lua scripts** inside Redis, reducing latency from O(N) network hops to O(1)."
-- **Fail-Open Philosophy**: "I implemented a `try-catch-allow` pattern with a 50ms circuit breaker. If FlowSentinel's infrastructure lags, the business traffic keeps flowing."
-- **Sidecar vs Middleware**: "We designed the Agent as a .NET Middleware to reduce the network overhead compared to a separate sidecar process, while keeping the Policy Engine centralized."
-
----
-
-## 🖥️ Command Center (Frontend)
-
-FlowSentinel includes a high-performance **Control Plane Dashboard** built with modern aesthetics:
-
--   **Glassmorphic UI**: Premium dark-mode design with sub-pixel blurring and neon accents.
--   **Real-time Observability**: Simulated real-time traffic counters and performance indicators.
--   **Policy Management UI**: Visual interface for managing distributed traffic rules.
--   **Threat Intelligence**: Dedicated view for monitoring and managing abusive traffic patterns.
-
-*Located in: `src/FlowSentinel.Dashboard`*
-
----
-
-## 🏁 Final Structure
-
-```
-flowsentinel/
-├── src/
-│   ├── FlowSentinel.Gateway/      # Control Plane (OTel + Prometheus)
-│   ├── FlowSentinel.Core/         # Rate Limit & Abuse Detection Logic
-│   ├── FlowSentinel.Policy/       # Policy Management
-│   ├── FlowSentinel.Agent/        # High-Performance Middleware SDK
-│   ├── FlowSentinel.Worker/       # Background Analytics
-│   ├── FlowSentinel.SampleApi/    # Integration Demo
-├── tests/                         # Unit & Performance Tests
-├── docs/                          # Architecture & Chaos Testing
-└── deployments/                   # Docker, Prometheus, Grafana
-```
+- **Atomic Governance**: "I chose atomic Lua scripts in Redis to eliminate race conditions in distributed counting, keeping overhead to sub-millisecond levels."
+- **Fail-Open Strategy**: "The system implements a 50ms circuit breaker on policy checks. If the control plane encounters latency, business traffic continues unhindered while alerts are fired."
+- **Semantic Filtering**: "We implemented a lightweight embedding-based classifier that acts as an 'Intent Firewall' at the edge."
 
 ---
 
 ## 📜 License
-
 MIT
+
+---
+*Architected and Engineered by Raphasha27 - Kirov Dynamics 2026.*
